@@ -738,7 +738,7 @@ select.form-control {
 }
 
 /* END PERPLEXITY DESIGN SYSTEM */
-/* Custom styles for Nithin Kumar Reddy Portfolio - Simple Image Loading */
+/* Custom styles for Nithin Kumar Reddy Portfolio */
 
 /* Navigation */
 .navbar {
@@ -858,6 +858,11 @@ select.form-control {
   color: var(--color-text);
   margin-bottom: var(--space-12);
   line-height: var(--line-height-tight);
+  background: linear-gradient(135deg, var(--color-text), var(--color-primary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
 }
 
 .hero-subtitle {
@@ -894,104 +899,103 @@ select.form-control {
   align-items: center;
 }
 
-/* Simple Profile Photo Container */
-.profile-photo-container {
+/* Clean Professional Photo Frame */
+.profile-photo-frame {
   position: relative;
   width: 320px;
   height: 320px;
-  border-radius: 50%;
-  overflow: hidden;
   transition: all var(--duration-normal) var(--ease-standard);
-  border: 3px solid var(--color-primary);
 }
 
-.profile-photo-container.rectangular {
+.profile-photo-frame.rectangular {
   width: 280px;
   height: 320px;
+}
+
+.profile-photo-frame:hover {
+  transform: scale(1.02);
+}
+
+.photo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, 
+    rgba(var(--color-teal-500-rgb, 33, 128, 141), 0.15), 
+    rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.25));
+  padding: 4px;
+  box-shadow: var(--shadow-md);
+}
+
+.photo-container.rectangular {
   border-radius: var(--radius-lg);
 }
 
-.profile-photo-container:hover {
-  transform: scale(1.02);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Fallback styling - shown when image fails to load */
-.profile-photo-fallback {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--color-bg-5), var(--color-bg-7));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  transition: opacity var(--duration-normal) var(--ease-standard);
-}
-
-.profile-photo-fallback.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.photo-initials {
-  font-size: 4rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-  margin-bottom: var(--space-16);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.photo-instruction {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  text-align: center;
-  padding: 0 var(--space-16);
-  background: rgba(var(--color-surface), 0.9);
-  border-radius: var(--radius-base);
-  padding: var(--space-8) var(--space-12);
-  border: 1px solid var(--color-border);
-  font-weight: var(--font-weight-medium);
-}
-
-/* Profile Photo - loads directly from file */
-.profile-photo {
-  position: absolute;
-  top: 0;
-  left: 0;
+.profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
-  z-index: 1;
-  transition: opacity var(--duration-normal) var(--ease-standard);
+  transition: all var(--duration-normal) var(--ease-standard);
+  background: linear-gradient(135deg, 
+    var(--color-primary), 
+    var(--color-teal-400));
 }
 
-.profile-photo.error {
-  display: none;
+.profile-image.rectangular {
+  border-radius: var(--radius-lg);
 }
 
-/* Image Loading States */
-.image-loading {
-  position: relative;
+.profile-image.fallback {
+  background: linear-gradient(135deg, 
+    var(--color-primary), 
+    var(--color-teal-400),
+    var(--color-primary-hover));
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite;
 }
 
-.image-loading::after {
-  content: 'Loading...';
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.photo-border {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(var(--color-primary-rgb, 33, 128, 141), 0.9);
-  color: var(--color-white);
-  padding: var(--space-8) var(--space-16);
-  border-radius: var(--radius-base);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  z-index: 3;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, 
+    var(--color-primary), 
+    var(--color-teal-300), 
+    var(--color-primary), 
+    var(--color-teal-400));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.6;
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+/* Professional hover effects */
+.profile-photo-frame:hover .profile-image {
+  transform: scale(1.03);
+}
+
+.profile-photo-frame:hover .photo-border {
+  opacity: 1;
+  animation: borderGlow 2s infinite alternate;
+}
+
+@keyframes borderGlow {
+  0% { 
+    box-shadow: 0 0 20px rgba(var(--color-primary-rgb, 33, 128, 141), 0.4);
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(var(--color-primary-rgb, 33, 128, 141), 0.8);
+  }
 }
 
 /* Hero Stats */
@@ -1015,7 +1019,7 @@ select.form-control {
 }
 
 .stat-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: var(--shadow-md);
 }
 
@@ -1136,6 +1140,12 @@ select.form-control {
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-card-border);
   box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.skill-category:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
 }
 
 .skill-category-title {
@@ -1242,6 +1252,12 @@ select.form-control {
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-card-border);
   box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.experience-content:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
 }
 
 .experience-header {
@@ -1334,6 +1350,7 @@ select.form-control {
   background: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 .testimonials-grid {
@@ -1360,7 +1377,7 @@ select.form-control {
 }
 
 .testimonial-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: var(--shadow-md);
 }
 
@@ -1469,6 +1486,7 @@ select.form-control {
 .contact-details a {
   color: var(--color-primary);
   text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
 }
 
 .contact-details a:hover {
@@ -1563,42 +1581,13 @@ select.form-control {
   font-size: var(--font-size-sm);
 }
 
-/* Success message styling */
-.success-message {
-  background: rgba(var(--color-success-rgb), 0.1);
-  color: var(--color-success);
-  padding: var(--space-16);
-  border-radius: var(--radius-base);
-  margin-top: var(--space-16);
-  text-align: center;
-  font-weight: var(--font-weight-medium);
+/* Button Enhancements */
+.btn {
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
-/* Error message styling */
-.error-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--color-error);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 6px;
-  z-index: 10000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  font-weight: 500;
-  max-width: 300px;
-  animation: slideInRight 0.3s ease-out;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.btn:hover {
+  transform: translateY(-2px);
 }
 
 /* Responsive Design */
@@ -1613,18 +1602,14 @@ select.form-control {
     order: -1;
   }
 
-  .profile-photo-container {
+  .profile-photo-frame {
     width: 250px;
     height: 250px;
   }
 
-  .profile-photo-container.rectangular {
+  .profile-photo-frame.rectangular {
     width: 220px;
     height: 250px;
-  }
-
-  .photo-initials {
-    font-size: 3rem;
   }
 
   .about-content {
@@ -1721,25 +1706,17 @@ select.form-control {
     overflow-x: auto;
     padding-bottom: var(--space-8);
   }
-
-  .photo-instruction {
-    font-size: var(--font-size-xs);
-  }
 }
 
 @media (max-width: 480px) {
-  .profile-photo-container {
+  .profile-photo-frame {
     width: 200px;
     height: 200px;
   }
 
-  .profile-photo-container.rectangular {
+  .profile-photo-frame.rectangular {
     width: 180px;
     height: 200px;
-  }
-
-  .photo-initials {
-    font-size: 2.5rem;
   }
 
   .hero-buttons {
@@ -1750,11 +1727,6 @@ select.form-control {
   .hero-buttons .btn {
     width: 100%;
     max-width: 250px;
-  }
-
-  .photo-instruction {
-    font-size: 11px;
-    padding: var(--space-6) var(--space-8);
   }
 }
 
@@ -1769,38 +1741,74 @@ html {
   outline-offset: 2px;
 }
 
-/* Animation for skill bars */
-@keyframes skillBarAnimation {
-  from {
-    width: 0%;
-  }
-  to {
-    width: var(--target-width);
-  }
+/* Success message styling */
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--color-success);
+  color: var(--color-white);
+  padding: var(--space-16) var(--space-20);
+  border-radius: var(--radius-base);
+  z-index: 10000;
+  box-shadow: var(--shadow-lg);
+  font-weight: var(--font-weight-medium);
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
 }
 
-/* Simple fade-in animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Error message styling */
+.error-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--color-error);
+  color: var(--color-white);
+  padding: var(--space-16) var(--space-20);
+  border-radius: var(--radius-base);
+  z-index: 10000;
+  box-shadow: var(--shadow-lg);
+  font-weight: var(--font-weight-medium);
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
 }
 
-.fade-in.visible {
+/* Field error styling */
+.field-error {
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-4);
+}
+
+/* Loading state */
+body.loaded {
+  opacity: 1;
+}
+
+/* Section reveal animations */
+section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s var(--ease-standard);
+}
+
+section.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Loading state for images */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.image-loading .profile-photo-fallback {
-  animation: pulse 1.5s ease-in-out infinite;
+/* Professional enhancement animations */
+.stat-card,
+.skill-category,
+.experience-item,
+.testimonial-card,
+.contact-item,
+.highlight-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
